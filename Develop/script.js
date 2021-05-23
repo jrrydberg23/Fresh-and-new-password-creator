@@ -26,7 +26,7 @@ function length() {
   } else (passwordLength < 128); {
     passwordLength = true;
   }
-  return passwordLength
+  return passwordLength;
 }
 
 // Function for lowercase
@@ -34,40 +34,44 @@ function lowercase() {
   lowercaseChoice = prompt("Do you want lowercase letters in your password? \n(Yes or No)")
   if (lowercaseChoice === 'yes'){
     lowercaseChoice = true;
+    return lowercaseChoice;
   } else (lowercaseChoice === 'no');{
     lowercaseChoice = false;
   }
-  return lowercaseChoice
+  return lowercaseChoice;
 }
 // Function for Uppercase
 function uppercase() {
   uppercaseChoice = prompt("Do you want uppercase letters in your password? \n(Yes or No)")
   if (uppercaseChoice === 'yes'){
     uppercaseChoice = true;
-  } else (upperaseChoice === 'no');{
+    return uppercaseChoice;
+  } else (uppercaseChoice === 'no');{
     uppercaseChoice = false;
+    return uppercaseChoice;
   }
-  return uppercaseChoice
 }
 // Function for NumericChar
 function numeric() {
   numericChoice = prompt("Do you want numbers in your password? \n(Yes or No)")
   if (numericChoice === 'yes'){
     numericChoice = true;
+    return numericChoice;
   } else (numericChoice === 'no');{
     numericChoice = false;
+    return numericChoice;
   }
-  return numericChoice
 }
 // Function for specialChar
 function special() {
   specialChoice = prompt("Do you want special characters in your password? \n(Yes or No)")
   if (specialChoice === 'yes'){
     specialChoice = true;
+    return specialChoice;
   } else (specialChoice === 'no');{
     specialChoice = false;
+    return specialChoice;
   }
-  return specialChoice
 }
 
 // Function to generate password
@@ -82,6 +86,32 @@ function generatePassword() {
   console.log(numericChoice);
   special();
   console.log(specialChoice);
+  
+  var letters = lowerCaseChar;
+  var password = "";
+
+  if (uppercaseChoice && numericChoice && specialChoice){
+     letters += upperCaseChar + numericChar + specialChar;
+  } else if (uppercaseChoice && numericChoice){
+    letters += upperCaseChar + numericChar;
+  } else if (uppercaseChoice && specialChoice){
+    letters += upperCaseChar + specialChar;
+  } else if (numericChoice && specialChoice){
+    letters += numericChar + specialChar;
+  } else if (uppercaseChoice){
+    letters += upperCaseChar;
+  } else if (specialChoice){
+    letters += specialChar;
+  } else if (numericChoice){
+    letters += numericChar;
+  } else {
+    letters = lowerCaseChar;
+  }
+
+  for (var i = 0; i < passwordLength; i++) {
+    password += letters.charAt[Math.floor(Math.random() * letters.length)];
+  }
+  return password;
 }
 // Write password to the #password input
 function writePassword() {
